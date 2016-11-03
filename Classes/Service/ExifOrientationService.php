@@ -78,7 +78,7 @@ namespace Bash\ExifOrientationHelper\Service
 
         private function getOutputFile(): string
         {
-            return GeneralUtility::tempnam('magic-fix-button-', '.jpg');
+            return GeneralUtility::tempnam('exif-orientation-helper-', '.jpg');
         }
     }
 }
