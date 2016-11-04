@@ -1,6 +1,6 @@
 <?php
 $EM_CONF[ $_EXTKEY ] = [
-    'title'       => 'EXIF Orientation Helper',
+    'title' => 'EXIF Orientation Helper',
     'description' => 'A simple button to correct the orientation of an image',
     'version' => '0.0.1',
     'state' => 'beta',
