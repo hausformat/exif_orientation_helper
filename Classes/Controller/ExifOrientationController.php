@@ -9,7 +9,7 @@ namespace Bash\ExifOrientationHelper\Controller
 
     class ExifOrientationController
     {
-        public function mainAction(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
+        public function mainAction(ServerRequestInterface $request, ResponseInterface $response)
         {
             $params = $request->getQueryParams();
 

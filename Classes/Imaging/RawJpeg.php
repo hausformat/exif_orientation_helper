@@ -18,7 +18,7 @@ namespace Bash\ExifOrientationHelper\Imaging
          */
         private $data;
 
-        public function __construct(string $filename)
+        public function __construct($filename)
         {
             $this->filename = $filename;
         }
@@ -43,22 +43,22 @@ namespace Bash\ExifOrientationHelper\Imaging
             return null;
         }
 
-        public function hasOrientation(): bool
+        public function hasOrientation()
         {
             return $this->getOrientation() !== null;
         }
 
-        public function rotate(int $angle)
+        public function rotate($angle)
         {
             $this->image = imagerotate($this->getImage(), $angle, null);
         }
 
-        public function flip(int $mode)
+        public function flip($mode)
         {
             imageflip($this->getImage(), $mode);
         }
 
-        public function write(string $filename)
+        public function write($filename)
         {
             touch($filename);
             imagejpeg($this->image, $filename, 100);
