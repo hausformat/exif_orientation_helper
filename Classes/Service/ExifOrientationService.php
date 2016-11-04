@@ -43,7 +43,7 @@ namespace Bash\ExifOrientationHelper\Service
             $storage->replaceFile($file, $output);
         }
 
-        private function writeImage(RawJpeg $image): string
+        private function writeImage(RawJpeg $image)
         {
             $path = $this->getOutputFile();
 
@@ -76,7 +76,7 @@ namespace Bash\ExifOrientationHelper\Service
             }
         }
 
-        private function getOutputFile(): string
+        private function getOutputFile()
         {
             return GeneralUtility::tempnam('exif-orientation-helper-', '.jpg');
         }

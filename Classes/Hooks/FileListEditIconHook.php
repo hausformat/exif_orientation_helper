@@ -53,7 +53,7 @@ namespace Bash\ExifOrientationHelper\Hooks
             return '<a href="' . htmlentities($url) . '" class="btn btn-default">' . $icon->render() . '</a>';
         }
 
-        protected function getReturnUrl(): string
+        protected function getReturnUrl()
         {
             $arguments = GeneralUtility::_GET();
 
