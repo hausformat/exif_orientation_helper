@@ -8,6 +8,7 @@ namespace Bash\ExifOrientationHelper\Hooks
     use TYPO3\CMS\Core\Imaging\IconFactory;
     use TYPO3\CMS\Core\Resource\ResourceFactory;
     use TYPO3\CMS\Core\Utility\GeneralUtility;
+    use TYPO3\CMS\Lang\LanguageService;
 
     class InlineRecord implements InlineElementHookInterface
     {
@@ -49,6 +50,8 @@ namespace Bash\ExifOrientationHelper\Hooks
                 return;
             }
 
+            /** @var LanguageService $languageService */
+            $languageService = $GLOBALS['LANG'];
             $resourceFactory = ResourceFactory::getInstance();
             $fileReference = $resourceFactory->getFileReferenceObject($uid);
 
@@ -70,7 +73,9 @@ namespace Bash\ExifOrientationHelper\Hooks
                 'return_url' => $this->getReturnUrl()
             ]);
 
-            $controlItems['exif_orientation_button'] = '<a href="' . htmlentities($url) . '" class="btn btn-default">' . $icon->render() . '</a>';
+            $title = $languageService->sL('LLL:EXT:exif_orientation_helper/Resources/Private/Language/locallang.xlf:button.tooltip');
+
+            $controlItems['exif_orientation_button'] = '<a href="' . htmlentities($url) . '" title="' . htmlentities($title) . '" class="btn btn-default">' . $icon->render() . '</a>';
         }
 
         protected function getReturnUrl()

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2016-11-04T00:00:00Z" product-name="exif_orientation_helper">
+        <header/>
+        <body>
+            <trans-unit id="button.tooltip">
+                <source>Correct image orientation</source>
+                <target>Ausrichtung des Bildes korrigieren</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -8,6 +8,7 @@ namespace Bash\ExifOrientationHelper\Hooks
     use TYPO3\CMS\Core\Resource\File;
     use TYPO3\CMS\Core\Utility\GeneralUtility;
     use TYPO3\CMS\Filelist\FileListEditIconHookInterface;
+    use TYPO3\CMS\Lang\LanguageService;
 
     class FileListEditIconHook implements FileListEditIconHookInterface
     {
@@ -41,6 +42,9 @@ namespace Bash\ExifOrientationHelper\Hooks
                 return null;
             }
 
+            /** @var LanguageService $languageService */
+            $languageService = $GLOBALS['LANG'];
+
             /** @var IconFactory $iconFactory */
             $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
             $icon = $iconFactory->getIcon('apply-exif-orientation', Icon::SIZE_SMALL);
@@ -50,7 +54,9 @@ namespace Bash\ExifOrientationHelper\Hooks
                 'return_url' => $this->getReturnUrl()
             ]);
 
-            return '<a href="' . htmlentities($url) . '" class="btn btn-default">' . $icon->render() . '</a>';
+            $title = $languageService->sL('LLL:EXT:exif_orientation_helper/Resources/Private/Language/locallang.xlf:button.tooltip');
+
+            return '<a href="' . htmlentities($url) . '" title="' . htmlentities($title) . '" class="btn btn-default">' . $icon->render() . '</a>';
         }
 
         protected function getReturnUrl()
