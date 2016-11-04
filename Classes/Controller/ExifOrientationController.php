@@ -30,7 +30,7 @@ namespace Bash\ExifOrientationHelper\Controller
 
             /** @var ExifOrientationService $exifService */
             $exifService = GeneralUtility::makeInstance(ExifOrientationService::class, $resourceFactory);
-            $exifService->applyRotation($file);
+            $exifService->applyOrientation($file);
 
             return $response->withHeader('location', $params['return_url']);
         }

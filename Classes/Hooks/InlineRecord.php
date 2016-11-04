@@ -60,12 +60,12 @@ namespace Bash\ExifOrientationHelper\Hooks
             $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
 
             $icon = $iconFactory->getIcon(
-                'magic-fix-button',
+                'apply-exif-orientation',
                 Icon::SIZE_SMALL,
                 null
             );
 
-            $url = BackendUtility::getModuleUrl('exif_orientation_button', [
+            $url = BackendUtility::getModuleUrl('exif_orientation_helper', [
                 'file_reference_uid' => $childRecord['uid'],
                 'return_url' => $this->getReturnUrl()
             ]);

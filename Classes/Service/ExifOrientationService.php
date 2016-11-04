@@ -20,7 +20,7 @@ namespace Bash\ExifOrientationHelper\Service
             $this->resourceFactory = $resourceFactory;
         }
 
-        public function applyRotation(File $file)
+        public function applyOrientation(File $file)
         {
             if ($file->getMimeType() !== self::JPEG_MIME_TYPE) {
                 return;
