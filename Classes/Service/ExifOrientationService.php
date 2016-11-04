@@ -18,6 +18,7 @@ use Bash\ExifOrientationHelper\Imaging\RawJpeg;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 
 /**
  * @author Ruben Schmidmeister <ruben.schmidmeister@icloud.com
@@ -44,6 +45,7 @@ class ExifOrientationService
      * Replaces $file with the processed output.
      *
      * @param \TYPO3\CMS\Core\Resource\File $file
+     * @api
      */
     public function applyOrientation(File $file)
     {
@@ -62,6 +64,9 @@ class ExifOrientationService
 
         $this->rotateImage($image);
         $this->flipImage($image);
+
+        GeneralUtility::makeInstance(Dispatcher::class)
+            ->dispatch(__CLASS__, 'process', [$file, $image]);
 
         $output = $this->writeImage($image);
 
