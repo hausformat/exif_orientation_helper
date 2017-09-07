@@ -98,7 +98,7 @@ class RawJpeg
     public function write($filename)
     {
         touch($filename);
-        imagejpeg($this->image, $filename, 100);
+        imagejpeg($this->getImage(), $filename, 100);
     }
 
     /**
