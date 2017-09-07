@@ -6,6 +6,9 @@
             <trans-unit id="button.tooltip">
                 <source>Correct image orientation</source>
             </trans-unit>
+            <trans-unit id="confirm.text">
+                <source>Are you sure? This action replaces the original image and discards metadata associated with the image.</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

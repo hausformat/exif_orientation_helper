@@ -80,8 +80,9 @@ class FileListEditIconHook implements FileListEditIconHookInterface
         ]);
 
         $title = $languageService->sL('LLL:EXT:exif_orientation_helper/Resources/Private/Language/locallang.xlf:button.tooltip');
+        $confirmText = $languageService->sL('LLL:EXT:exif_orientation_helper/Resources/Private/Language/locallang.xlf:confirm.text');
 
-        return '<a href="' . htmlentities($url) . '" title="' . htmlentities($title) . '" class="btn btn-default">' . $icon->render() . '</a>';
+        return '<a data-content="' . htmlentities($confirmText) . '" data-severity="warning" data-title="' . htmlentities($title) . '" href="' . htmlentities($url) . '" title="' . htmlentities($title) . '" class="btn btn-default t3js-modal-trigger">' . $icon->render() . '</a>';
     }
 
     /**
