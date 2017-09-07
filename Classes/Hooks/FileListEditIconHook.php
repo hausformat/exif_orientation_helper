@@ -19,6 +19,7 @@ use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Filelist\FileListEditIconHookInterface;
 use TYPO3\CMS\Lang\LanguageService;
@@ -60,7 +61,9 @@ class FileListEditIconHook implements FileListEditIconHookInterface
      */
     protected function getButton(File $fileOrFolderObject)
     {
-        if ($fileOrFolderObject->getMimeType() !== ExifOrientationService::JPEG_MIME_TYPE) {
+        $exifService = GeneralUtility::makeInstance(ExifOrientationService::class, ResourceFactory::getInstance());
+
+        if (!$exifService->canApplyOrientation($fileOrFolderObject)) {
             return NULL;
         }
 

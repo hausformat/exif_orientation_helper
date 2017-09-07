@@ -15,7 +15,7 @@ namespace Bash\ExifOrientationHelper\Service;
  */
 
 use Bash\ExifOrientationHelper\Imaging\RawJpeg;
-use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
@@ -44,10 +44,10 @@ class ExifOrientationService
      * Applies the orientation found in the EXIF data for $file and removes exif data.
      * Replaces $file with the processed output.
      *
-     * @param \TYPO3\CMS\Core\Resource\File $file
+     * @param \TYPO3\CMS\Core\Resource\FileInterface $file
      * @api
      */
-    public function applyOrientation(File $file)
+    public function applyOrientation(FileInterface $file)
     {
         if ($file->getMimeType() !== self::JPEG_MIME_TYPE) {
             return;
@@ -71,6 +71,24 @@ class ExifOrientationService
         $output = $this->writeImage($image);
 
         $storage->replaceFile($file, $output);
+    }
+
+    /**
+     * Returns if the file has an EXIF Orientation that can be "applied".
+     *
+     * @api
+     * @param \TYPO3\CMS\Core\Resource\FileInterface $file
+     * @return bool
+     */
+    public function canApplyOrientation(FileInterface $file)
+    {
+        if ($file->getMimeType() !== self::JPEG_MIME_TYPE) {
+            return false;
+        }
+
+        $image = GeneralUtility::makeInstance(RawJpeg::class, $file->getForLocalProcessing());
+
+        return $image->hasOrientation();
     }
 
     /**
