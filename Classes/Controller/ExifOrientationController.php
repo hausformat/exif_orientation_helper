@@ -51,7 +51,7 @@ class ExifOrientationController
         }
 
         /** @var ExifOrientationService $exifService */
-        $exifService = GeneralUtility::makeInstance(ExifOrientationService::class, $resourceFactory);
+        $exifService = GeneralUtility::makeInstance(ExifOrientationService::class);
         $exifService->applyOrientation($file);
 
         return $response->withHeader('location', $params[ 'return_url' ]);

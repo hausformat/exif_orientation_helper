@@ -7,6 +7,10 @@
                 <source>Correct image orientation</source>
                 <target>Ausrichtung des Bildes korrigieren</target>
             </trans-unit>
+            <trans-unit id="confirm.text">
+                <source>Are you sure? This action replaces the original image and discards metadata associated with the image.</source>
+                <target>Sind Sie sicher? Diese Aktion ersetzt das ursprüngliche Bild und verwirft die Metadaten des Bildes.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

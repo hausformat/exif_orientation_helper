@@ -73,8 +73,10 @@ class InlineRecord implements InlineElementHookInterface
         $resourceFactory = ResourceFactory::getInstance();
         $fileReference = $resourceFactory->getFileReferenceObject($uid);
 
-        if ($fileReference->getMimeType() !== ExifOrientationService::JPEG_MIME_TYPE) {
-            return;
+        $exifService = GeneralUtility::makeInstance(ExifOrientationService::class);
+
+        if (!$exifService->canApplyOrientation($fileReference)) {
+            return NULL;
         }
 
         /** @var IconFactory $iconFactory */
@@ -92,8 +94,9 @@ class InlineRecord implements InlineElementHookInterface
         ]);
 
         $title = $languageService->sL('LLL:EXT:exif_orientation_helper/Resources/Private/Language/locallang.xlf:button.tooltip');
+        $confirmText = $languageService->sL('LLL:EXT:exif_orientation_helper/Resources/Private/Language/locallang.xlf:confirm.text');
 
-        $controlItems[ 'exif_orientation_button' ] = '<a href="' . htmlentities($url) . '" title="' . htmlentities($title) . '" class="btn btn-default">' . $icon->render() . '</a>';
+        $controlItems[ 'exif_orientation_button' ] = '<a data-content="' . htmlentities($confirmText) . '" data-severity="warning" data-title="' . htmlentities($title) . '" href="' . htmlentities($url) . '" title="' . htmlentities($title) . '" class="btn btn-default t3js-modal-trigger">' . $icon->render() . '</a>';
     }
 
     /**
