@@ -35,9 +35,9 @@ class ExifOrientationService
     /**
      * @param \TYPO3\CMS\Core\Resource\ResourceFactory $resourceFactory
      */
-    public function __construct(ResourceFactory $resourceFactory)
+    public function __construct(ResourceFactory $resourceFactory = null)
     {
-        $this->resourceFactory = $resourceFactory;
+        $this->resourceFactory = $resourceFactory ?: ResourceFactory::getInstance();
     }
 
     /**

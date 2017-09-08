@@ -61,7 +61,7 @@ class FileListEditIconHook implements FileListEditIconHookInterface
      */
     protected function getButton(File $fileOrFolderObject)
     {
-        $exifService = GeneralUtility::makeInstance(ExifOrientationService::class, ResourceFactory::getInstance());
+        $exifService = GeneralUtility::makeInstance(ExifOrientationService::class);
 
         if (!$exifService->canApplyOrientation($fileOrFolderObject)) {
             return NULL;
