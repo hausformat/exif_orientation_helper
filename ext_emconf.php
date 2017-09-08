@@ -2,7 +2,7 @@
 $EM_CONF[ $_EXTKEY ] = [
     'title' => 'EXIF Orientation Helper',
     'description' => 'A simple button to correct the orientation of an image',
-    'version' => '0.0.1',
+    'version' => '0.2.0',
     'state' => 'beta',
     'category' => 'be',
     'author' => 'Ruben Schmidmeister',
