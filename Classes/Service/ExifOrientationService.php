@@ -26,6 +26,18 @@ use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 class ExifOrientationService
 {
     const JPEG_MIME_TYPE = 'image/jpeg';
+    const IMG_FLIP_NONE = 0;
+
+    private static $operations = [
+        1 => [0, self::IMG_FLIP_NONE],
+        2 => [0, IMG_FLIP_HORIZONTAL],
+        3 => [180, self::IMG_FLIP_NONE],
+        4 => [0, IMG_FLIP_VERTICAL],
+        5 => [90, IMG_FLIP_VERTICAL],
+        6 => [270, self::IMG_FLIP_NONE],
+        7 => [90, IMG_FLIP_HORIZONTAL],
+        8 => [90, self::IMG_FLIP_NONE],
+    ];
 
     /**
      * @var ResourceFactory
@@ -56,14 +68,26 @@ class ExifOrientationService
         $storage = $file->getStorage();
         $path = $file->getForLocalProcessing();
 
+        /** @var RawJpeg $image */
         $image = GeneralUtility::makeInstance(RawJpeg::class, $path);
 
         if (!$image->hasOrientation()) {
             return;
         }
 
-        $this->rotateImage($image);
-        $this->flipImage($image);
+        $orientation = $image->getOrientation();
+
+        if (!isset(self::$operations[$orientation])) {
+            return;
+        }
+
+        list($rotate, $flip) = self::$operations[$orientation];
+
+        $image->rotate($rotate);
+
+        if ($flip !== self::IMG_FLIP_NONE) {
+            $image->flip($flip);
+        }
 
         GeneralUtility::makeInstance(Dispatcher::class)
             ->dispatch(__CLASS__, 'process', [$file, $image]);
@@ -103,36 +127,6 @@ class ExifOrientationService
         $image->write($path);
 
         return $path;
-    }
-
-    /**
-     * @param \Bash\ExifOrientationHelper\Imaging\RawJpeg $image
-     */
-    private function rotateImage(RawJpeg $image)
-    {
-        if ($image->getOrientation() > 4) {
-            $image->rotate(90);
-        }
-    }
-
-    /**
-     * @param \Bash\ExifOrientationHelper\Imaging\RawJpeg $image
-     */
-    private function flipImage(RawJpeg $image)
-    {
-        $orientation = $image->getOrientation();
-
-        if ($orientation === 3 || $orientation === 6) {
-            $image->flip(IMG_FLIP_BOTH);
-        }
-
-        if ($orientation === 2 || $orientation === 5) {
-            $image->flip(IMG_FLIP_VERTICAL);
-        }
-
-        if ($orientation === 4 || $orientation === 7) {
-            $image->flip(IMG_FLIP_HORIZONTAL);
-        }
     }
 
     /**
