@@ -66,7 +66,7 @@ class ExifOrientationService
         }
 
         $storage = $file->getStorage();
-        $path = $file->getForLocalProcessing();
+        $path = $file->getForLocalProcessing(false);
 
         /** @var RawJpeg $image */
         $image = GeneralUtility::makeInstance(RawJpeg::class, $path);
@@ -110,7 +110,7 @@ class ExifOrientationService
             return false;
         }
 
-        $image = GeneralUtility::makeInstance(RawJpeg::class, $file->getForLocalProcessing());
+        $image = GeneralUtility::makeInstance(RawJpeg::class, $file->getForLocalProcessing(false));
 
         return $image->hasOrientation();
     }
