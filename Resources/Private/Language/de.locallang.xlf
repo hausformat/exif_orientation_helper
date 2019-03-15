@@ -8,8 +8,8 @@
                 <target>Ausrichtung des Bildes korrigieren</target>
             </trans-unit>
             <trans-unit id="confirm.text">
-                <source>Are you sure? This action replaces the original image and discards metadata associated with the image.</source>
-                <target>Sind Sie sicher? Diese Aktion ersetzt das ursprüngliche Bild und verwirft die Metadaten des Bildes.</target>
+                <source>This action replaces the original image and discards all EXIF metadata associated with the image. Metadata entered through the TYPO3 Backend will not be affected.</source>
+                <target>Diese Aktion ersetzt das ursprüngliche Bild und verwirft die EXIF-Metadaten des Bildes. Metadaten aus dem TYPO3 Backend sind davon nicht betroffen.</target>
             </trans-unit>
         </body>
     </file>

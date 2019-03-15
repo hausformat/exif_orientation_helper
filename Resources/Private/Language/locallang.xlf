@@ -7,7 +7,7 @@
                 <source>Correct image orientation</source>
             </trans-unit>
             <trans-unit id="confirm.text">
-                <source>Are you sure? This action replaces the original image and discards metadata associated with the image.</source>
+                <source>This action replaces the original image and discards all EXIF metadata associated with the image. Metadata entered through the TYPO3 Backend will not be affected.</source>
             </trans-unit>
         </body>
     </file>
