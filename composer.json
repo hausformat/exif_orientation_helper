@@ -1,4 +1,15 @@
 {
-  "name":"hausformat/exif_orientation_helper",
-  "description":"This is exif_orientation_helper TYPO3 extension."
+	"name":"hausformat/exif_orientation_helper",
+	"type": "typo3-cms-extension",
+	"description":"This is exif_orientation_helper TYPO3 extension.",
+	"keywords": [
+		"TYPO3",
+		"extension",
+		"exif"
+	],
+	"autoload": {
+		"psr-4": {
+			"Bash\\ExifOrientationHelper\\": "Classes"
+		}
+	},
 }
