@@ -1,7 +1,7 @@
 {
-	"name":"hausformat/exif_orientation_helper",
+	"name": "hausformat/exif_orientation_helper",
 	"type": "typo3-cms-extension",
-	"description":"This is exif_orientation_helper TYPO3 extension.",
+	"description": "This is exif_orientation_helper TYPO3 extension.",
 	"keywords": [
 		"TYPO3",
 		"extension",
