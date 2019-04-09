@@ -1,0 +1,15 @@
+{
+	"name": "hausformat/exif_orientation_helper",
+	"type": "typo3-cms-extension",
+	"description": "A simple button for TYPO3 that corrects the orientation of an image",
+	"keywords": [
+		"TYPO3",
+		"extension",
+		"exif"
+	],
+	"autoload": {
+		"psr-4": {
+			"Bash\\ExifOrientationHelper\\": "Classes"
+		}
+	}
+}
